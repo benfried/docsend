@@ -1,0 +1,38 @@
+You can view your function in the Cloud Console here: https://console.cloud.google.com/functions/details/us-central1/docsend2pdf?project=deal-tools
+
+buildConfig:
+  build: projects/664689353933/locations/us-central1/builds/489f11ac-6c44-419b-98e7-38fbe4f8e2bd
+  dockerRegistry: ARTIFACT_REGISTRY
+  dockerRepository: projects/deal-tools/locations/us-central1/repositories/gcf-artifacts
+  entryPoint: docsend_http
+  runtime: python312
+  source:
+    storageSource:
+      bucket: gcf-v2-sources-664689353933-us-central1
+      generation: '1712542663756978'
+      object: docsend2pdf/function-source.zip
+  sourceProvenance:
+    resolvedStorageSource:
+      bucket: gcf-v2-sources-664689353933-us-central1
+      generation: '1712542663756978'
+      object: docsend2pdf/function-source.zip
+createTime: '2024-04-08T02:17:43.965961714Z'
+environment: GEN_2
+labels:
+  deployment-tool: cli-gcloud
+name: projects/deal-tools/locations/us-central1/functions/docsend2pdf
+serviceConfig:
+  allTrafficOnLatestRevision: true
+  availableCpu: '0.1666'
+  availableMemory: 256M
+  ingressSettings: ALLOW_ALL
+  maxInstanceCount: 100
+  maxInstanceRequestConcurrency: 1
+  revision: docsend2pdf-00001-mem
+  service: projects/deal-tools/locations/us-central1/services/docsend2pdf
+  serviceAccountEmail: 664689353933-compute@developer.gserviceaccount.com
+  timeoutSeconds: 60
+  uri: https://docsend2pdf-3jteycfvma-uc.a.run.app
+state: ACTIVE
+updateTime: '2024-04-08T02:18:41.596308532Z'
+url: https://us-central1-deal-tools.cloudfunctions.net/docsend2pdf
