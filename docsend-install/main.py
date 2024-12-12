@@ -49,6 +49,7 @@ def docsend_http(request: flask.Request) -> flask.typing.ResponseReturnValue:
 
     response = flask.make_response(byte_io.getvalue())
     response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f"attachment; filename=docsend_{id}.pdf"
     return response
 
 
