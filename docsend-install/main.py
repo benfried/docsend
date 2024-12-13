@@ -27,8 +27,25 @@ def docsend_http(request: flask.Request) -> flask.typing.ResponseReturnValue:
         if "passcode" in request_args:
             passcode = request_args["passcode"]
     else:
-        return 'Must pass id={docsendid} and usually email={email}', 400
-            
+        if request.method == 'POST':
+            url = request.form.get('url')
+            email = request.form.get('email')
+            passcode = request.form.get('passcode')
+
+            if not url or not url.startswith("https://docsend.com/view/"):
+                return 'Invalid URL. Must start with "https://docsend.com/view/".', 400
+
+            id = url.split("view/")[1]
+        else:
+            return '''
+                <form method="post">
+                    URL: <input type="text" name="url"><br>
+                    Email: <input type="text" name="email"><br>
+                    Passcode: <input type="password" name="passcode"><br>
+                    <input type="submit" value="Submit">
+                </form>
+            ''', 200
+
     ds = DocSend(id)
     ds.fetch_meta()
     if email:
