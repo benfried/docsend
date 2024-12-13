@@ -2,3 +2,4 @@
 docsend/__pycache__
 *.egg-info
 dist
+deployment.log
