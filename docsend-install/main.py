@@ -38,12 +38,60 @@ def docsend_http(request: flask.Request) -> flask.typing.ResponseReturnValue:
             id = url.split("view/")[1]
         else:
             return '''
-                <form method="post">
-                    URL: <input type="text" name="url"><br>
-                    Email: <input type="text" name="email"><br>
-                    Passcode: <input type="password" name="passcode"><br>
-                    <input type="submit" value="Submit">
-                </form>
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>docsend to PDF converter</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 50px;
+                        }
+                        h1 {
+                            text-align: center;
+                        }
+                        form {
+                            max-width: 500px;
+                            margin: auto;
+                        }
+                        label {
+                            display: block;
+                            font-size: 1.2em;
+                            margin-bottom: 10px;
+                        }
+                        input[type="text"], input[type="password"] {
+                            width: 100%;
+                            padding: 10px;
+                            margin-bottom: 20px;
+                            box-sizing: border-box;
+                        }
+                        input[type="submit"] {
+                            display: block;
+                            width: 100%;
+                            padding: 10px;
+                            background-color: #4CAF50;
+                            color: white;
+                            border: none;
+                            cursor: pointer;
+                        }
+                        input[type="submit"]:hover {
+                            background-color: #45a049;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>docsend to PDF converter</h1>
+                    <form method="post">
+                        <label for="url">URL (the whole URL, beginning with https://docsend.com/view):</label>
+                        <input type="text" id="url" name="url"><br>
+                        <label for="email">Email the docsend was shared with:</label>
+                        <input type="text" id="email" name="email"><br>
+                        <label for="passcode">Passcode (if one was given):</label>
+                        <input type="password" id="passcode" name="passcode"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </body>
+                </html>
             ''', 200
 
     ds = DocSend(id)
